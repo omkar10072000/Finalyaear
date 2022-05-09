@@ -5,14 +5,14 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/rendering.dart';
 import 'approve.dart';
 
-class List extends StatefulWidget {
-  const List({Key? key}) : super(key: key);
+class approvelist extends StatefulWidget {
+  const approvelist({Key? key}) : super(key: key);
 
   @override
-  _ListState createState() => _ListState();
+  _approvelistState createState() => _approvelistState();
 }
 
-Widget buildList(String name, String dep) {
+Widget buildlist(String name, String dep) {
   return Container(
     decoration: BoxDecoration(
       borderRadius: BorderRadius.circular(45),
@@ -51,9 +51,14 @@ Widget buildList(String name, String dep) {
                   ),
                   Text(dep,
                       style: TextStyle(
-                          color: Colors.black, fontSize: 8, letterSpacing: .3)),
+                          color: Colors.black,
+                          fontSize: 12,
+                          letterSpacing: .3)),
                 ],
               ),
+              SizedBox(
+                height: 6,
+              )
             ],
           ),
         )
@@ -62,7 +67,7 @@ Widget buildList(String name, String dep) {
   );
 }
 
-class _ListState extends State<List> {
+class _approvelistState extends State<approvelist> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -73,7 +78,7 @@ class _ListState extends State<List> {
         padding: const EdgeInsets.all(8.0),
         child: StreamBuilder(
             stream:
-                FirebaseFirestore.instance.collection("Request").snapshots(),
+                FirebaseFirestore.instance.collection("Approve").snapshots(),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.active) {
                 if (snapshot.hasData) {
@@ -98,23 +103,7 @@ class _ListState extends State<List> {
                           String shift = m[index]['shift'];
                           String total = m[index]['total'];
                           return InkWell(
-                              onTap: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => SR(
-                                              name,
-                                              from,
-                                              end,
-                                              date,
-                                              shift,
-                                              dep,
-                                              reason,
-                                              d,
-                                              total,
-                                            )));
-                              },
-                              child: buildList(name, dep));
+                              onTap: () {}, child: buildlist(name, dep));
                         }),
                   );
                 } else {

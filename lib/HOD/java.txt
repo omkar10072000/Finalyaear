@@ -1,0 +1,10 @@
+java
+import java.util.*;
+class day{
+    int time,peno;
+    string dayn;
+
+    void suggestion_w(){
+       
+    }
+}

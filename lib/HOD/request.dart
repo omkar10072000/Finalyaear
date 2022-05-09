@@ -12,7 +12,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class CreateNewTaskPage extends StatelessWidget {
   void upload(String name, String from, String end, String ID, String shift,
-      String department, String reason, String date) async {
+      String department, String reason, String date, String totals) async {
 //      String uid = credential.user!.uid;
     Map<String, dynamic> User = {
       "name": name,
@@ -22,7 +22,8 @@ class CreateNewTaskPage extends StatelessWidget {
       "shift": shift,
       "Department": department,
       "reason": reason,
-      "date": date
+      "date": date,
+      "total": totals,
     };
     await FirebaseFirestore.instance
         .collection("Request")
@@ -54,6 +55,7 @@ class CreateNewTaskPage extends StatelessWidget {
     var c4 = c;
     var c5 = c;
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: SafeArea(
         child: Column(
           children: <Widget>[
@@ -72,7 +74,7 @@ class CreateNewTaskPage extends StatelessWidget {
                       Text(
                         'Create new Request',
                         style: TextStyle(
-                            fontSize: 30.0, fontWeight: FontWeight.w700),
+                            fontSize: 20.0, fontWeight: FontWeight.w700),
                       ),
                     ],
                   ),
@@ -237,52 +239,122 @@ class CreateNewTaskPage extends StatelessWidget {
                           children: <Widget>[
                             InkWell(
                                 onTap: () {
-                                  _dapartment.text = "IT DEPARTMENT";
+                                  _dapartment.text = "Assembly - Valves";
                                   c = Colors.blue;
                                 },
                                 child: Chip(
-                                  label: Text("IT DEPARTMENT"),
+                                  label: Text("Assembly - Valves"),
                                   backgroundColor: c,
                                   labelStyle: TextStyle(color: Colors.white),
                                 )),
                             InkWell(
                                 onTap: () {
-                                  _dapartment.text = "COMPUTER DEPARTMENT";
+                                  _dapartment.text = "Assembly - Fittings";
                                   c2 = Colors.blue;
                                 },
                                 child: Chip(
                                   backgroundColor: c2,
-                                  label: Text("COMPUTER DEPARTMENT"),
+                                  label: Text("Assembly- Fittings"),
                                   labelStyle: TextStyle(color: Colors.white),
                                 )),
                             InkWell(
                                 onTap: () {
-                                  _dapartment.text = "ENTC DEPARTMENT";
+                                  _dapartment.text = "Inward Quality";
                                   c3 = Colors.blue;
                                 },
                                 child: Chip(
                                   backgroundColor: c3,
-                                  label: Text("ENTC DEPARTMENT"),
+                                  label: Text("Inward Quality"),
                                   labelStyle: TextStyle(color: Colors.white),
                                 )),
                             InkWell(
                                 onTap: () {
-                                  _dapartment.text = "MECHANICAL DEPARTMENT";
+                                  _dapartment.text = "Final Quality";
                                   c4 = Colors.blue;
                                 },
                                 child: Chip(
                                   backgroundColor: c4,
-                                  label: Text("MECHANICAL DEPARTMENT"),
+                                  label: Text("Final Quality"),
                                   labelStyle: TextStyle(color: Colors.white),
                                 )),
                             InkWell(
                                 onTap: () {
-                                  _dapartment.text = "CIVIL DEPARTMENT";
+                                  _dapartment.text = "Production";
                                   c5 = Colors.blue;
                                 },
                                 child: Chip(
                                   backgroundColor: c5,
-                                  label: Text("CIVIL DEPARTMENT"),
+                                  label: Text("Production"),
+                                  labelStyle: TextStyle(color: Colors.white),
+                                )),
+                            InkWell(
+                                onTap: () {
+                                  _dapartment.text = "Component Stores";
+                                  c5 = Colors.blue;
+                                },
+                                child: Chip(
+                                  backgroundColor: c5,
+                                  label: Text("Component Stores"),
+                                  labelStyle: TextStyle(color: Colors.white),
+                                )),
+                            InkWell(
+                                onTap: () {
+                                  _dapartment.text = "Raw Material Stores";
+                                  c5 = Colors.blue;
+                                },
+                                child: Chip(
+                                  backgroundColor: c5,
+                                  label: Text("Raw Material Stores"),
+                                  labelStyle: TextStyle(color: Colors.white),
+                                )),
+                            InkWell(
+                                onTap: () {
+                                  _dapartment.text = "Dispatch";
+                                  c5 = Colors.blue;
+                                },
+                                child: Chip(
+                                  backgroundColor: c5,
+                                  label: Text("Dispatch"),
+                                  labelStyle: TextStyle(color: Colors.white),
+                                )),
+                            InkWell(
+                                onTap: () {
+                                  _dapartment.text = "IT";
+                                  c5 = Colors.blue;
+                                },
+                                child: Chip(
+                                  backgroundColor: c5,
+                                  label: Text("IT"),
+                                  labelStyle: TextStyle(color: Colors.white),
+                                )),
+                            InkWell(
+                                onTap: () {
+                                  _dapartment.text = "Accounts";
+                                  c5 = Colors.blue;
+                                },
+                                child: Chip(
+                                  backgroundColor: c5,
+                                  label: Text("Accounts"),
+                                  labelStyle: TextStyle(color: Colors.white),
+                                )),
+                            InkWell(
+                                onTap: () {
+                                  _dapartment.text = "HR";
+                                  c5 = Colors.blue;
+                                },
+                                child: Chip(
+                                  backgroundColor: c5,
+                                  label: Text("HR"),
+                                  labelStyle: TextStyle(color: Colors.white),
+                                )),
+                            InkWell(
+                                onTap: () {
+                                  _dapartment.text = "Admin";
+                                  c5 = Colors.blue;
+                                },
+                                child: Chip(
+                                  backgroundColor: c5,
+                                  label: Text("Admin"),
                                   labelStyle: TextStyle(color: Colors.white),
                                 )),
                           ],
@@ -310,24 +382,26 @@ class CreateNewTaskPage extends StatelessWidget {
                         _dapartment.text.trim(),
                         _reason.text.trim(),
                         _date.text.trim(),
+                        _total.text.trim(),
                       );
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => List()));
+                      Navigator.pop(context);
                     },
                     child: Container(
-                      child: Text(
-                        'Create Task',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w700,
-                            fontSize: 18),
-                      ),
-                      alignment: Alignment.center,
-                      margin: EdgeInsets.fromLTRB(20, 10, 20, 20),
-                      width: width - 40,
-                      decoration: BoxDecoration(
-                        color: LightColors.kBlue,
-                        borderRadius: BorderRadius.circular(30),
+                      child: Container(
+                        child: Text(
+                          'Create Task',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w700,
+                              fontSize: 18),
+                        ),
+                        alignment: Alignment.center,
+                        margin: EdgeInsets.fromLTRB(20, 10, 20, 20),
+                        width: width - 80,
+                        decoration: BoxDecoration(
+                          color: LightColors.kBlue,
+                          borderRadius: BorderRadius.circular(30),
+                        ),
                       ),
                     ),
                   ),

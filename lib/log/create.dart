@@ -50,6 +50,7 @@ class _SignupThreePageState extends State<SignupThreePage> {
   TextEditingController password = TextEditingController();
   TextEditingController position = TextEditingController();
   TextEditingController name = TextEditingController();
+  String _dropDownValue = "please select position";
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
@@ -97,21 +98,39 @@ class _SignupThreePageState extends State<SignupThreePage> {
                       ),
                     ),
                     Container(
-                      margin: EdgeInsets.only(top: 10),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(20)),
-                        color: Colors.white,
-                      ),
-                      padding: EdgeInsets.only(left: 10),
-                      child: TextFormField(
-                        controller: position,
-                        decoration: InputDecoration(
-                          border: InputBorder.none,
-                          hintText: "Position",
-                          prefixIcon: Icon(Icons.person_pin_sharp),
+                        margin: EdgeInsets.only(top: 10),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(20)),
+                          color: Colors.white,
                         ),
-                      ),
-                    ),
+                        padding: EdgeInsets.only(left: 14),
+                        child: DropdownButton(
+                          hint: _dropDownValue == null
+                              ? Text('Dropdown')
+                              : Text(
+                                  _dropDownValue,
+                                  style: TextStyle(color: Colors.grey),
+                                ),
+                          isExpanded: true,
+                          iconSize: 30.0,
+                          style: TextStyle(fontSize: 18, color: Colors.grey),
+                          items: ['HR', 'HOD', 'Senior Management'].map(
+                            (val) {
+                              return DropdownMenuItem<String>(
+                                value: val,
+                                child: Text(val),
+                              );
+                            },
+                          ).toList(),
+                          onChanged: (val) {
+                            setState(
+                              () {
+                                _dropDownValue = val.toString();
+                                position.text = val.toString();
+                              },
+                            );
+                          },
+                        )),
                     Container(
                       margin: EdgeInsets.only(top: 10),
                       decoration: BoxDecoration(
@@ -144,15 +163,20 @@ class _SignupThreePageState extends State<SignupThreePage> {
                         ),
                       ),
                     ),
-                    RichText(
-                      text: TextSpan(children: [
-                        TextSpan(
-                            text: "Already a member ? ",
-                            style: TextStyle(color: Colors.black)),
-                        TextSpan(
-                            text: "SIGNIN",
-                            style: TextStyle(color: orangeColors)),
-                      ]),
+                    InkWell(
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                      child: RichText(
+                        text: TextSpan(children: [
+                          TextSpan(
+                              text: "Already a member ? ",
+                              style: TextStyle(color: Colors.black)),
+                          TextSpan(
+                              text: "SIGNIN",
+                              style: TextStyle(color: orangeColors)),
+                        ]),
+                      ),
                     )
                   ],
                 ),
@@ -191,7 +215,11 @@ class HeaderContainer extends StatelessWidget {
               )),
           Center(
             child: CircleAvatar(
-                radius: 70, backgroundImage: NetworkImage('images/l.jpg')),
+                radius: 70,
+                backgroundImage: NetworkImage(
+                  'https://fluidcontrols.com/wp-content/uploads/2018/07/fc-logo.jpg',
+                  scale: 2.0,
+                )),
           ),
         ],
       ),

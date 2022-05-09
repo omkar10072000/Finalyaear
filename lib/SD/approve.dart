@@ -16,6 +16,7 @@ class SR extends StatelessWidget {
   String date;
   String d;
   String total;
+  var totalss;
   Map<String, dynamic> User = {
     "name": "",
     "from": "",
@@ -40,6 +41,11 @@ class SR extends StatelessWidget {
       "date": date,
       "total": total,
     };
+    print("\n\n\n\n\n\n\n");
+    print(total);
+    totalss = int.parse(total);
+    assert(totalss is int);
+    //print(totalss); // 12345
   }
   //static final String path = "lib/src/pages/profile/profile3.dart";
   // final image = avatars[1];
@@ -47,203 +53,230 @@ class SR extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.lightBlue[300],
-      body: SingleChildScrollView(
-        child: Container(
-          margin: EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 16.0),
-          child: Column(
-            children: <Widget>[
-              Stack(
-                children: <Widget>[
-                  Container(
-                    padding: EdgeInsets.all(16.0),
-                    margin: EdgeInsets.only(top: 16.0),
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(5.0)),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Container(
-                          margin: EdgeInsets.only(left: 16.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Container(
+            margin: EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 16.0),
+            child: Column(
+              children: <Widget>[
+                Stack(
+                  children: <Widget>[
+                    Container(
+                      padding: EdgeInsets.all(16.0),
+                      margin: EdgeInsets.only(top: 16.0),
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(5.0)),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Container(
+                            margin: EdgeInsets.only(left: 16.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Padding(
+                                  padding: const EdgeInsets.all(3.0),
+                                  child: Text(
+                                    d,
+                                    style: TextStyle(
+                                        fontSize: 18, color: Colors.black),
+                                  ),
+                                ),
+
+                                // style: Theme.of(context).textTheme.title,
+
+                                ListTile(
+                                  contentPadding: EdgeInsets.all(0),
+                                  title: Text("Employee Name"),
+                                  subtitle: Text(
+                                    name,
+                                    style: TextStyle(
+                                        fontSize: 18, color: Colors.black),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          SizedBox(height: 10.0),
+                          Row(
                             children: <Widget>[
-                              Padding(
-                                padding: const EdgeInsets.all(3.0),
-                                child: Text(
-                                  d,
-                                  style: TextStyle(
-                                      fontSize: 18, color: Colors.black),
+                              Expanded(
+                                child: Column(
+                                  children: <Widget>[Text("From"), Text(from)],
                                 ),
                               ),
-
-                              // style: Theme.of(context).textTheme.title,
-
-                              ListTile(
-                                contentPadding: EdgeInsets.all(0),
-                                title: Text("Employee Name"),
-                                subtitle: Text(
-                                  name,
-                                  style: TextStyle(
-                                      fontSize: 18, color: Colors.black),
+                              Expanded(
+                                child: Column(
+                                  children: <Widget>[Text("TO"), Text(end)],
+                                ),
+                              ),
+                              Expanded(
+                                child: Column(
+                                  children: <Widget>[
+                                    Text("Total Hours"),
+                                    Text(total)
+                                  ],
                                 ),
                               ),
                             ],
                           ),
-                        ),
-                        SizedBox(height: 10.0),
-                        Row(
-                          children: <Widget>[
-                            Expanded(
-                              child: Column(
-                                children: <Widget>[Text("From"), Text(from)],
-                              ),
-                            ),
-                            Expanded(
-                              child: Column(
-                                children: <Widget>[Text("TO"), Text(end)],
-                              ),
-                            ),
-                            Expanded(
-                              child: Column(
-                                children: <Widget>[
-                                  Text("Total Hours"),
-                                  Text(total)
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-
-                  //this code is to add image of employee
-                  /* Container(
-                    height: 80,
-                    width: 80,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10.0),
-                        image: DecorationImage(
-                            image: NetworkImage(
-                                "https://fluidcontrols.com/wp-content/uploads/2018/07/fc-logo.jpg"),
-                            fit: BoxFit.cover)),
-                    margin: EdgeInsets.only(left: 16.0),
-                  ),*/
-                ],
-              ),
-              Container(
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(5.0),
-                ),
-                child: Column(
-                  children: <Widget>[
-                    ListTile(
-                      title: Text("Employee information"),
-                    ),
-                    Divider(),
-                    ListTile(
-                      title: Text("Employee ID"),
-                      subtitle: Text(ID),
-                      leading: Icon(Icons.assignment_ind_rounded),
-                    ),
-                    ListTile(
-                      title: Text(shift),
-                      //subtitle: Text("9.00 TO 5.00"),
-                      leading: Icon(Icons.timer_sharp),
-                    ),
-                    ListTile(
-                      title: Text("DEPARTMENT"),
-                      subtitle: Text(d),
-                      leading: Icon(Icons.web),
-                    ),
-                    ListTile(
-                      title: Text("Reason"),
-                      subtitle: Text(
-                        reason,
+                        ],
                       ),
-                      leading: Icon(Icons.person),
                     ),
-                    ListTile(
-                      title: Text(" Date"),
-                      subtitle: Text(date),
-                      leading: Icon(Icons.calendar_view_day),
-                    ),
-                    Row(children: [
-                      SizedBox(width: 5.0),
-                      Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: FlatButton(
-                            color: Colors.red[500],
-                            highlightColor: Colors.black,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(20)),
-                            onPressed: () async {
-                              await FirebaseFirestore.instance
-                                  .collection('messages')
-                                  .doc(name)
-                                  .delete();
 
-                              await FirebaseFirestore.instance
-                                  .collection("Reject")
-                                  .doc(name)
-                                  .set(User);
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          CreateNewTaskPage()));
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.all(3.0),
-                              child: Text(
-                                "REJECT",
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.w700,
-                                    fontSize: 18),
-                              ),
-                            )),
-                      ),
-                      SizedBox(width: 5.0),
-                      Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: FlatButton(
-                            color: Colors.green[500],
-                            shape: StadiumBorder(),
-                            highlightColor: Colors.black,
-                            onPressed: () async {
-                              await FirebaseFirestore.instance
-                                  .collection('Request')
-                                  .doc(name)
-                                  .delete();
-                              await FirebaseFirestore.instance
-                                  .collection("Approve")
-                                  .doc(name)
-                                  .set(User);
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          CreateNewTaskPage()));
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.all(3.0),
-                              child: Text(
-                                "APPROVED ",
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.w700,
-                                    fontSize: 18),
-                              ),
-                            )),
-                      )
-                    ])
+                    //this code is to add image of employee
+                    /* Container(
+                      height: 80,
+                      width: 80,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10.0),
+                          image: DecorationImage(
+                              image: NetworkImage(
+                                  "https://fluidcontrols.com/wp-content/uploads/2018/07/fc-logo.jpg"),
+                              fit: BoxFit.cover)),
+                      margin: EdgeInsets.only(left: 16.0),
+                    ),*/
                   ],
                 ),
-              )
-            ],
+                Container(
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(5.0),
+                  ),
+                  child: Column(
+                    children: <Widget>[
+                      ListTile(
+                        title: Text("Employee information"),
+                      ),
+                      Divider(),
+                      ListTile(
+                        title: Text("Employee ID"),
+                        subtitle: Text(ID),
+                        leading: Icon(Icons.assignment_ind_rounded),
+                      ),
+                      ListTile(
+                        title: Text(shift),
+                        //subtitle: Text("9.00 TO 5.00"),
+                        leading: Icon(Icons.timer_sharp),
+                      ),
+                      ListTile(
+                        title: Text("DEPARTMENT"),
+                        subtitle: Text(d),
+                        leading: Icon(Icons.web),
+                      ),
+                      ListTile(
+                        title: Text("Reason"),
+                        subtitle: Text(
+                          reason,
+                        ),
+                        leading: Icon(Icons.person),
+                      ),
+                      ListTile(
+                        title: Text(" Date"),
+                        subtitle: Text(date),
+                        leading: Icon(Icons.calendar_view_day),
+                      ),
+                      Column(children: [
+                        SizedBox(width: 5.0),
+                        Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: FlatButton(
+                              color: Colors.red[500],
+                              highlightColor: Colors.black,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(20)),
+                              onPressed: () async {
+                                await FirebaseFirestore.instance
+                                    .collection('Request')
+                                    .doc(name)
+                                    .delete();
+
+                                await FirebaseFirestore.instance
+                                    .collection("Reject")
+                                    .doc(name)
+                                    .set(User);
+                                Navigator.of(context).pop();
+                                /*
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => List()));*/
+                              },
+                              child: Padding(
+                                padding: const EdgeInsets.all(3.0),
+                                child: Text(
+                                  "REJECT",
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: 18),
+                                ),
+                              )),
+                        ),
+                        SizedBox(width: 5.0),
+                        Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: FlatButton(
+                              color: Colors.green[500],
+                              shape: StadiumBorder(),
+                              highlightColor: Colors.black,
+                              onPressed: () async {
+                                var datas = await FirebaseFirestore.instance
+                                    .collection('TOTALS')
+                                    .doc(name)
+                                    .get();
+                                try {
+                                  DocumentSnapshot datass =
+                                      await FirebaseFirestore.instance
+                                          .collection('Total')
+                                          .doc(name)
+                                          .get();
+                                  int s = datass["total"];
+                                  await FirebaseFirestore.instance
+                                      .collection("Total")
+                                      .doc(name)
+                                      .set(
+                                          {"total": s + totalss, "name": name});
+                                } catch (e) {
+                                  await FirebaseFirestore.instance
+                                      .collection("Total")
+                                      .doc(name)
+                                      .set({"total": totalss, "name": name});
+                                }
+
+                                await FirebaseFirestore.instance
+                                    .collection('Request')
+                                    .doc(name)
+                                    .delete();
+                                await FirebaseFirestore.instance
+                                    .collection("Approve")
+                                    .doc(name)
+                                    .set(User);
+                                /*
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => List()));*/
+                                Navigator.of(context).pop();
+                              },
+                              child: Padding(
+                                padding: const EdgeInsets.all(3.0),
+                                child: Text(
+                                  "APPROVED ",
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: 18),
+                                ),
+                              )),
+                        )
+                      ])
+                    ],
+                  ),
+                )
+              ],
+            ),
           ),
         ),
       ),

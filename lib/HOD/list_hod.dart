@@ -1,18 +1,18 @@
+import 'package:fluid/HOD/rejects.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/rendering.dart';
-import 'approve.dart';
 
-class List extends StatefulWidget {
-  const List({Key? key}) : super(key: key);
+class List_hod extends StatefulWidget {
+  const List_hod({Key? key}) : super(key: key);
 
   @override
-  _ListState createState() => _ListState();
+  _List_hodState createState() => _List_hodState();
 }
 
-Widget buildList(String name, String dep) {
+Widget buildList_hod(String name, String dep) {
   return Container(
     decoration: BoxDecoration(
       borderRadius: BorderRadius.circular(45),
@@ -62,7 +62,7 @@ Widget buildList(String name, String dep) {
   );
 }
 
-class _ListState extends State<List> {
+class _List_hodState extends State<List_hod> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -102,7 +102,7 @@ class _ListState extends State<List> {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => SR(
+                                        builder: (context) => SR2(
                                               name,
                                               from,
                                               end,
@@ -114,7 +114,7 @@ class _ListState extends State<List> {
                                               total,
                                             )));
                               },
-                              child: buildList(name, dep));
+                              child: buildList_hod(name, dep));
                         }),
                   );
                 } else {

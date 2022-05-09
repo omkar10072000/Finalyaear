@@ -1,5 +1,10 @@
+import 'dart:developer';
+
 import 'package:fluid/HOD/request.dart';
+import 'package:fluid/HR/display.dart';
+import 'package:fluid/HR/list.dart';
 import 'package:fluid/SD/requestlist.dart';
+import 'package:fluid/home.dart';
 import 'package:fluid/log/login.dart';
 import 'package:fluid/log/create.dart';
 import 'package:flutter/material.dart';
@@ -26,7 +31,10 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: Login(),
+      home: SafeArea(
+        minimum: const EdgeInsets.all(6.0),
+        child: Container(color: Colors.white, child: Login()),
+      ),
     );
   }
 }
